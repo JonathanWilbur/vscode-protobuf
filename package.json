@@ -1,0 +1,79 @@
+{
+    "name": "protobuf",
+    "displayName": "Protocol Buffers",
+    "description": "Protocol Buffers syntax, snippets, formatting, and more.",
+    "version": "0.1.0",
+    "publisher": "wildboar",
+    "engines": {
+        "vscode": "^1.26.0"
+    },
+    "categories": [
+        "Formatters",
+        "Language Packs",
+        "Programming Languages",
+        "Snippets"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "proto",
+                "aliases": [
+                    "Protocol Buffers",
+                    "Protobuf"
+                ],
+                "extensions": [
+                    ".proto"
+                ],
+                "configuration": "./configuration/proto.language-config.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "proto",
+                "scopeName": "source.proto",
+                "path": "./configuration/proto.tmLanguage.json"
+            },
+            {
+                "scopeName": "markdown.proto.codeblock",
+                "path": "./configuration/proto.codeblock.json",
+                "injectTo": [
+                    "text.html.markdown"
+                ],
+                "embeddedLanguages": {
+                    "meta.embedded.block.proto": "proto"
+                }
+            }
+        ],
+        "snippets": [
+            {
+                "language": "proto",
+                "path": "./configuration/proto.code-snippets"
+            }
+        ]
+    },
+    "main": "./dist/index.js",
+    "activationEvents": [
+        "onLanguage:proto"
+    ],
+    "dependencies": {
+        "event-stream": "^3.3.4",
+        "vscode": "^1.1.26"
+    },
+    "scripts": {
+        "pkgvars": "node ./node_modules/vscode/bin/install",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/JonathanWilbur/vscode-protobuf.git"
+    },
+    "keywords": [
+        "protobuf",
+        "protocol",
+        "buffers",
+        "grpc",
+        "google"
+    ],
+    "icon": "images/Icon512.png",
+    "homepage": "https://github.com/JonathanWilbur/vscode-protobuf/README.md"
+}

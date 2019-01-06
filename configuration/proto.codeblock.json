@@ -1,0 +1,28 @@
+{
+	"fileTypes": [],
+	"injectionSelector": "L:markup.fenced_code.block.markdown",
+	"patterns": [
+		{
+			"include": "#proto-code-block"
+		}
+	],
+	"repository": {
+		"proto-code-block": {
+			"begin": "(?<=[`~])protobuf(\\s+[^`~]*)?$",
+			"end": "(^|\\G)(?=\\s*[`~]{3,}\\s*$)",
+			"patterns": [
+				{
+					"begin": "(^|\\G)(\\s*)(.*)",  
+					"while": "(^|\\G)(?!\\s*([`~]{3,})\\s*$)",
+					"contentName": "meta.embedded.block.proto",
+					"patterns": [
+						{
+							"include": "source.proto"
+						}
+					]
+				}
+			]
+		}
+	},
+	"scopeName": "markdown.proto.codeblock"
+}

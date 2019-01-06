@@ -1,0 +1,48 @@
+- [ ] Review tmLanguage.json for correct names https://macromates.com/manual/en/language_grammars#naming_conventions
+- [ ] Add whitespace support to tmLanguage.json
+- [ ] Perfect escapes in strings
+- [ ] Diagnostics
+  - [ ] Hint
+    - [ ] Sort reserved fields in order
+    - [ ] Sort message fields in order
+    - [ ] Message names should be upper camelcase
+    - [ ] Field names should be lower snakecase
+    - [ ] Enum names should be upper camelcase
+    - [ ] Enum members should be upper snakecase
+    - [ ] Service names should be upper camelcase
+    - [ ] RPC names should be upper camelcase
+  - [ ] Warnings
+    - [ ] Deprecated syntax version
+    - [ ] Cannot find imported protobuf file (This might be fine, because it could be specified on the CLI)
+  - [ ] Errors
+    - [ ] Invalid syntax
+    - [ ] Missing trailing semi-colon
+    - [ ] Unbalanced brackets
+    - [ ] Missing value for option
+    - [ ] Missing value for field option
+    - [ ] Missing enum name
+    - [ ] Missing field type
+    - [ ] Map including non-key type
+    - [ ] Map had too few types
+    - [ ] Map had too many types
+    - [ ] Reserved cannot use negative numbers
+    - [ ] Reserved range reversed bounds
+    - [ ] Unnamed service
+    - [ ] Unnamed rpc
+    - [ ] Missing message type for rpc
+    - [ ] Missing rpc return type
+    - [ ] First member of an enum must be 0
+    - [ ] packed special option uses value type boolean
+    - [ ] Duplicate enum members without allow_alias = true
+    - [ ] Reserved member already in use
+    - [ ] Cannot mix field names and numbers in reserved statements
+    - [ ] "You also cannot use the numbers 19000 through 19999 [...] as they are reserved for the Protocol Buffers implementation [...]"
+    - [ ] Validate all of this stuff: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf
+- [ ] Completion Proposals?
+- [ ] Hovers
+- [ ] Show Definitions
+- [ ] Find all references
+- [ ] Highlight all occurrences
+- [ ] Show all symbol Definitions
+- [ ] Format source code
+- [ ] Rename symbols

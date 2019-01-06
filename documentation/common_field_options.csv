@@ -1,0 +1,4 @@
+key,valueType,protobuf1,protobuf2,protobuf3
+key,valueType,protobuf1,protobuf2,protobuf3
+packed,boolean,null,true,true
+deprecated,boolean,null,true,true

@@ -1,0 +1,636 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Protocol Buffers",
+	"patterns": [
+        { "include": "#intLit" },
+        { "include": "#decimalLit" },
+        { "include": "#octLit" },
+        { "include": "#hexLit" },
+        { "include": "#floatLit" },
+        { "include": "#boolLit" },
+        { "include": "#strLit" },
+        { "include": "#hexEscape" },
+        { "include": "#octEscape" },
+        { "include": "#charEscape" },
+        { "include": "#syntax" },
+        { "include": "#import" },
+        { "include": "#package" },
+        { "include": "#option" },
+        { "include": "#repeated" },
+        { "include": "#oneof" },
+        { "include": "#map" },
+        { "include": "#keyType" },
+        { "include": "#reserved" },
+        { "include": "#to" },
+        { "include": "#message" },
+        { "include": "#service" },
+        { "include": "#rpc" },
+        { "include": "#stream" },
+        { "include": "#returns" },
+        { "include": "#Any" },
+        { "include": "#Api" },
+        { "include": "#BoolValue" },
+        { "include": "#BytesValue" },
+        { "include": "#DoubleValue" },
+        { "include": "#Duration" },
+        { "include": "#Empty" },
+        { "include": "#Enum" },
+        { "include": "#EnumValue" },
+        { "include": "#Field" },
+        { "include": "#Field.Cardinality" },
+        { "include": "#Field.Kind" },
+        { "include": "#FieldMask" },
+        { "include": "#FloatValue" },
+        { "include": "#Int32Value" },
+        { "include": "#Int64Value" },
+        { "include": "#ListValue" },
+        { "include": "#Method" },
+        { "include": "#Mixin" },
+        { "include": "#NullValue" },
+        { "include": "#Option" },
+        { "include": "#SourceContext" },
+        { "include": "#StringValue" },
+        { "include": "#Struct" },
+        { "include": "#Syntax" },
+        { "include": "#Timestamp" },
+        { "include": "#Type" },
+        { "include": "#UInt32Value" },
+        { "include": "#UInt64Value" },
+        { "include": "#Value" }
+	],
+	"repository": {
+        "letter": {
+            "patterns": [
+                {
+                    "match": "[A-Za-z]"
+                }
+            ]
+        },
+        "decimalDigit": {
+            "patterns": [
+                {
+                    "match": "\\d"
+                }
+            ]
+        },
+        "octalDigit": {
+            "patterns": [
+                {
+                    "match": "[0-7]"
+                }
+            ]
+        },
+        "hexDigit": {
+            "patterns": [
+                {
+                    "match": "[0-9A-Fa-f]"
+                }
+            ]
+        },
+        "ident": {
+            "patterns": [
+                {
+                    "match": "\\b[A-Za-z][A-Za-z0-9_]*\\b"
+                }
+            ]
+        },
+        "fullIdent": {
+            "patterns": [
+                {
+                    "match": "\\b[A-Za-z][A-Za-z0-9_\\.]*\\b"
+                }
+            ]
+        },
+        "messageName": {
+            "patterns": [
+                {
+                    "match": "\\b[A-Za-z][A-Za-z0-9_\\.]*\\b"
+                }
+            ]
+        },
+        "enumName": {
+            "patterns": [
+                {
+                    "match": "\\b[A-Za-z][A-Za-z0-9_\\.]*\\b"
+                }
+            ]
+        },
+        "fieldName": {
+            "patterns": [
+                {
+                    "match": "\\b[A-Za-z][A-Za-z0-9_\\.]*\\b"
+                }
+            ]
+        },
+        "oneofName": {
+            "patterns": [
+                {
+                    "match": "\\b[A-Za-z][A-Za-z0-9_\\.]*\\b"
+                }
+            ]
+        },
+        "mapName": {
+            "patterns": [
+                {
+                    "match": "\\b[A-Za-z][A-Za-z0-9_\\.]*\\b"
+                }
+            ]
+        },
+        "rpcName": {
+            "patterns": [
+                {
+                    "match": "\\b[A-Za-z][A-Za-z0-9_\\.]*\\b"
+                }
+            ]
+        },
+        "messageType": {
+            "patterns": [
+                {
+                    "match": "\\b[A-Za-z\\.][A-Za-z0-9_\\.]*\\b"
+                }
+            ]
+        },
+        "enumType": {
+            "patterns": [
+                {
+                    "match": "\\b[A-Za-z\\.][A-Za-z0-9_\\.]*\\b"
+                }
+            ]
+        },
+        "intLit": {
+            "patterns": [
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b[1-9][0-9]*\\b"
+                },
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b0[0-7]*\\b"
+                },
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b0(x|X)[0-9A-Fa-f]+\\b"
+                }
+            ]
+        },
+        "decimalLit": {
+            "patterns": [
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b[1-9][0-9]*\\b"
+                }
+            ]
+        },
+        "octalLit": {
+            "patterns": [
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b0[0-7]*\\b"
+                }
+            ]
+        },
+        "hexLit": {
+            "patterns": [
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b0(x|X)[0-9A-Fa-f]+\\b"
+                }
+            ]
+        },
+        "floatLit": {
+            "patterns": [
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b[0-9]+\\.[0-9]*(?:(e|E)(\\+|\\-)?[0-9]+)?\\b"
+                },
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b[0-9]+(?:(e|E)(\\+|\\-)?[0-9]+)?\\b"
+                },
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b\\.[0-9]+(?:(e|E)(\\+|\\-)?[0-9]+)?\\b"
+                },
+                {
+                    "name": "constant.numeric",
+                    "match": "\\binf\\b"
+                },
+                {
+                    "name": "constant.numeric",
+                    "match": "\\bnan\\b"
+                }
+            ]
+        },
+        "decimals": {
+            "patterns": [
+                {
+                    "match": "[0-9]+"
+                }
+            ]
+        },
+        "exponent": {
+            "patterns": [
+                {
+                    "match": "(?:(e|E)(\\+|\\-)?[0-9]+)?"
+                }
+            ]
+        },
+        "boolLit": {
+            "patterns": [
+                {
+                    "name": "constant.language",
+                    "match": "\\btrue\\b"
+                },
+                {
+                    "name": "constant.language",
+                    "match": "\\bfalse\\b"
+                }
+            ]
+        },
+        "strLit": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double",
+                    "match": "\".*[^\\\\]\""
+                },
+                {
+                    "name": "string.quoted.double",
+                    "match": "\"\""
+                },
+                {
+                    "name": "string.quoted.single",
+                    "match": "'.*[^\\\\]'"
+                },
+                {
+                    "name": "string.quoted.single",
+                    "match": "''"
+                }
+            ]
+        },
+        "charValue": {
+            "patterns": []
+        },
+        "hexEscape": {
+            "patterns": [
+                {
+                    "name": "constant.character.escape",
+                    "match": "\\\\(x|X)[0-9A-Fa-f]{2}"
+                }
+            ]
+        },
+        "octEscape": {
+            "patterns": [
+                {
+                    "name": "constant.character.escape",
+                    "match": "\\\\[0-7]{3}"
+                }
+            ]
+        },
+        "charEscape": {
+            "patterns": [
+                {
+                    "name": "constant.character.escape",
+                    "match": "\\\\a"
+                },
+                {
+                    "name": "constant.character.escape",
+                    "match": "\\\\b"
+                },
+                {
+                    "name": "constant.character.escape",
+                    "match": "\\\\f"
+                },
+                {
+                    "name": "constant.character.escape",
+                    "match": "\\\\n"
+                },
+                {
+                    "name": "constant.character.escape",
+                    "match": "\\\\r"
+                },
+                {
+                    "name": "constant.character.escape",
+                    "match": "\\\\t"
+                },
+                {
+                    "name": "constant.character.escape",
+                    "match": "\\\\v"
+                },
+                {
+                    "name": "constant.character.escape",
+                    "match": "\\\\\\\\"
+                },
+                {
+                    "name": "constant.character.escape",
+                    "match": "\\\\'"
+                },
+                {
+                    "name": "constant.character.escape",
+                    "match": "\\\\\""
+                }
+            ]
+        },
+        "quote": {
+            "patterns": [
+                {
+                    "match": "'"
+                },
+                {
+                    "match": "\""
+                }
+            ]
+        },
+        "emptyStatement": {
+            "patterns": [
+                {
+                    "name": "keyword.other",
+                    "match": ";"
+                }
+            ]
+        },
+        "constant": {
+            "patterns": [
+                {
+                    "name": "entity.name",
+                    "match": "\\b[A-Za-z][A-Za-z0-9_\\.]*\\b"
+                },
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b(\\+|\\-)?[1-9][0-9]*\\b"
+                },
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b(\\+|\\-)?0[0-7]*\\b"
+                },
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b(\\+|\\-)?0(x|X)[0-9A-Fa-f]+\\b"
+                },
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b(\\+|\\-)?[0-9]+\\.[0-9]*(?:(e|E)(\\+|\\-)?[0-9]+)?\\b"
+                },
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b(\\+|\\-)?[0-9]+(?:(e|E)(\\+|\\-)?[0-9]+)?\\b"
+                },
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b(\\+|\\-)?\\.[0-9]+(?:(e|E)(\\+|\\-)?[0-9]+)?\\b"
+                },
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b(\\+|\\-)?inf\\b"
+                },
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b(\\+|\\-)?nan\\b"
+                },
+                {
+                    "name": "string.quoted.double",
+                    "match": "\\b\".*[^\\\\]\"\\b"
+                },
+                {
+                    "name": "string.quoted.double",
+                    "match": "\\b\"\"\\b"
+                },
+                {
+                    "name": "string.quoted.single",
+                    "match": "\\b'.*[^\\\\]'\\b"
+                },
+                {
+                    "name": "string.quoted.single",
+                    "match": "\\b''\\b"
+                },
+                {
+                    "name": "constant.language",
+                    "match": "\\btrue\\b"
+                },
+                {
+                    "name": "constant.language",
+                    "match": "\\bfalse\\b"
+                }
+            ]
+        },
+        "syntax": {
+            "patterns": [
+                {
+                    "name": "keyword.other",
+                    "match": "\\bsyntax\\b"
+                }
+            ]
+        },
+        "import": {
+            "patterns": [
+                {
+                    "name": "keyword.other",
+                    "match": "\\bimport\\b"
+                },
+                {
+                    "name": "storage.modifier",
+                    "match": "\\bweak\\b"
+                },
+                {
+                    "name": "storage.modifier",
+                    "match": "\\bpublic\\b"
+                }
+            ]
+        },
+        "package": {
+            "patterns": [
+                {
+                    "name": "keyword.other",
+                    "match": "\\bpackage\\b"
+                }
+            ]
+        },
+        "option": {
+            "patterns": [
+                {
+                    "name": "keyword.other",
+                    "match": "\\bpackage\\b"
+                }
+            ]
+        },
+        "type": {
+            "patterns": [
+                { "name": "entity.name.type", "match": "\\bdouble\\b" },
+                { "name": "entity.name.type", "match": "\\bfloat\\b" },
+                { "name": "entity.name.type", "match": "\\bint32\\b" },
+                { "name": "entity.name.type", "match": "\\bint64\\b" },
+                { "name": "entity.name.type", "match": "\\buint32\\b" },
+                { "name": "entity.name.type", "match": "\\buint64\\b" },
+                { "name": "entity.name.type", "match": "\\bsint32\\b" },
+                { "name": "entity.name.type", "match": "\\bsint64\\b" },
+                { "name": "entity.name.type", "match": "\\bfixed32\\b" },
+                { "name": "entity.name.type", "match": "\\bfixed64\b" },
+                { "name": "entity.name.type", "match": "\\bsfixed32\\b" },
+                { "name": "entity.name.type", "match": "\\bsfixed64\\b" },
+                { "name": "entity.name.type", "match": "\\bbool\\b" },
+                { "name": "entity.name.type", "match": "\\bstring\\b" },
+                { "name": "entity.name.type", "match": "\\bbytes\\b" },
+                { "name": "entity.name.type", "match": "\\b[A-Za-z\\.][A-Za-z0-9_\\.]*\\b" },
+                { "name": "entity.name.type", "match": "\\b[A-Za-z\\.][A-Za-z0-9_\\.]*\\b" }
+            ]
+        },
+        "fieldNumber": {
+            "patterns": [
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b[1-9][0-9]*\\b"
+                },
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b0[0-7]*\\b"
+                },
+                {
+                    "name": "constant.numeric",
+                    "match": "\\b0(x|X)[0-9A-Fa-f]+\\b"
+                }
+            ]
+        },
+        "repeated": {
+            "patterns": [
+                {
+                    "name": "keyword.other",
+                    "match": "\\brepeated\\b"
+                }
+            ]
+        },
+        "oneof": {
+            "patterns": [
+                {
+                    "name": "keyword.other",
+                    "match": "\\boneof\\b"
+                }
+            ]
+        },
+        "map": {
+            "patterns": [
+                {
+                    "name": "entity.other",
+                    "match": "\\bmap\\b"
+                }
+            ]
+        },
+        "keyType": {
+            "patterns": [
+                { "name": "entity.name.type", "match": "\\bint32\\b" },
+                { "name": "entity.name.type", "match": "\\bint64\\b" },
+                { "name": "entity.name.type", "match": "\\buint32\\b" },
+                { "name": "entity.name.type", "match": "\\buint64\\b" },
+                { "name": "entity.name.type", "match": "\\bsint32\\b" },
+                { "name": "entity.name.type", "match": "\\bsint64\\b" },
+                { "name": "entity.name.type", "match": "\\bfixed32\\b" },
+                { "name": "entity.name.type", "match": "\\bfixed64\b" },
+                { "name": "entity.name.type", "match": "\\bsfixed32\\b" },
+                { "name": "entity.name.type", "match": "\\bsfixed64\\b" },
+                { "name": "entity.name.type", "match": "\\bbool\\b" },
+                { "name": "entity.name.type", "match": "\\bstring\\b" }
+            ]
+        },
+        "reserved": {
+            "patterns": [
+                {
+                    "name": "keyword.other",
+                    "match": "\\breserved\\b"
+                }
+            ]
+        },
+        "to": {
+            "patterns": [
+                {
+                    "name": "keyword.other",
+                    "match": "\\bto\\b"
+                }
+            ]
+        },
+        "message": {
+            "patterns": [
+                {
+                    "name": "keyword.other",
+                    "match": "\\bmessage\\b"
+                }
+            ]
+        },
+        "service": {
+            "patterns": [
+                {
+                    "name": "keyword.other",
+                    "match": "\\bservice\\b"
+                }
+            ]
+        },
+        "rpc": {
+            "patterns": [
+                {
+                    "name": "keyword.other",
+                    "match": "\\brpc\\b"
+                }
+            ]
+        },
+        "stream": {
+            "patterns": [
+                {
+                    "name": "keyword.other",
+                    "match": "\\bstream\\b"
+                }
+            ]
+        },
+        "returns": {
+            "patterns": [
+                {
+                    "name": "keyword.other",
+                    "match": "\\breturns\\b"
+                }
+            ]
+        },
+        "optional": {
+            "patterns": [
+                {
+                    "name": "keyword.other",
+                    "match": "\\boptional\\b"
+                }
+            ]
+        },
+        "required": {
+            "patterns": [
+                {
+                    "name": "keyword.other",
+                    "match": "\\brequired\\b"
+                }
+            ]
+        },
+        "Any": { "patterns": [ { "name": "support.type", "match": "\\bAny\\b" } ] },
+        "Api": { "patterns": [ { "name": "support.type", "match": "\\bApi\\b" } ] },
+        "BoolValue": { "patterns": [ { "name": "support.type", "match": "\\bBoolValue\\b" } ] },
+        "BytesValue": { "patterns": [ { "name": "support.type", "match": "\\bBytesValue\\b" } ] },
+        "DoubleValue": { "patterns": [ { "name": "support.type", "match": "\\bDoubleValue\\b" } ] },
+        "Duration": { "patterns": [ { "name": "support.type", "match": "\\bDuration\\b" } ] },
+        "Empty": { "patterns": [ { "name": "support.type", "match": "\\bEmpty\\b" } ] },
+        "Enum": { "patterns": [ { "name": "support.type", "match": "\\bEnum\\b" } ] },
+        "EnumValue": { "patterns": [ { "name": "support.type", "match": "\\bEnumValue\\b" } ] },
+        "Field": { "patterns": [ { "name": "support.type", "match": "\\bField\\b" } ] },
+        "Field.Cardinality": { "patterns": [ { "name": "support.type", "match": "\\bField.Cardinality\\b" } ] },
+        "Field.Kind": { "patterns": [ { "name": "support.type", "match": "\\bField.Kind\\b" } ] },
+        "FieldMask": { "patterns": [ { "name": "support.type", "match": "\\bFieldMask\\b" } ] },
+        "FloatValue": { "patterns": [ { "name": "support.type", "match": "\\bFloatValue\\b" } ] },
+        "Int32Value": { "patterns": [ { "name": "support.type", "match": "\\bInt32Value\\b" } ] },
+        "Int64Value": { "patterns": [ { "name": "support.type", "match": "\\bInt64Value\\b" } ] },
+        "ListValue": { "patterns": [ { "name": "support.type", "match": "\\bListValue\\b" } ] },
+        "Method": { "patterns": [ { "name": "support.type", "match": "\\bMethod\\b" } ] },
+        "Mixin": { "patterns": [ { "name": "support.type", "match": "\\bMixin\\b" } ] },
+        "NullValue": { "patterns": [ { "name": "support.type", "match": "\\bNullValue\\b" } ] },
+        "Option": { "patterns": [ { "name": "support.type", "match": "\\bOption\\b" } ] },
+        "SourceContext": { "patterns": [ { "name": "support.type", "match": "\\bSourceContext\\b" } ] },
+        "StringValue": { "patterns": [ { "name": "support.type", "match": "\\bStringValue\\b" } ] },
+        "Struct": { "patterns": [ { "name": "support.type", "match": "\\bStruct\\b" } ] },
+        "Syntax": { "patterns": [ { "name": "support.type", "match": "\\bSyntax\\b" } ] },
+        "Timestamp": { "patterns": [ { "name": "support.type", "match": "\\bTimestamp\\b" } ] },
+        "Type": { "patterns": [ { "name": "support.type", "match": "\\bType\\b" } ] },
+        "UInt32Value": { "patterns": [ { "name": "support.type", "match": "\\bUInt32Value\\b" } ] },
+        "UInt64Value": { "patterns": [ { "name": "support.type", "match": "\\bUInt64Value\\b" } ] },
+        "Value": { "patterns": [ { "name": "support.type", "match": "\\bValue\\b" } ] }
+    },
+	"scopeName": "source.proto"
+}

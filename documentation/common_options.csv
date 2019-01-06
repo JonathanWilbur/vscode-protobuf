@@ -1,0 +1,11 @@
+key,valueType,protobuf1,protobuf2,protobuf3
+java_package,string,null,true,true
+java_multiple_files,boolean,null,false,true
+java_outer_classname,string,null,true,true
+optimize_for,enum,null,true,true
+cc_generic_services,boolean,null,true,false
+java_generic_services,boolean,null,true,false
+py_generic_services,boolean,null,true,false
+cc_enable_arenas,boolean,null,true,true
+message_set_wire_format,boolean,null,true,true
+objc_class_prefix,string,null,false,true
